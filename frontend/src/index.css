@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    background-color: theme('colors.terminal.DEFAULT');
+    color: theme('colors.ink.DEFAULT');
+  }
+  *:focus-visible {
+    outline: 2px solid theme('colors.terminal.DEFAULT');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .stamp {
+    font-family: theme('fontFamily.stamp');
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .terminal-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .terminal-scroll::-webkit-scrollbar-track {
+    background: theme('colors.ink.DEFAULT');
+  }
+  .terminal-scroll::-webkit-scrollbar-thumb {
+    background: theme('colors.ink.line');
+    border-radius: 4px;
+  }
+}

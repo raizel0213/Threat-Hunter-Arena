@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./backend
+    container_name: tha-backend
+    restart: unless-stopped
+    env_file: ./backend/.env
+    volumes:
+      - tha-data:/app/app/data
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: /api
+    container_name: tha-frontend
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  tha-data:

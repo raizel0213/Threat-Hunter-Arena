@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+app/data/arena.db
+app/data/*.db
+*.egg-info/
+dist/
+build/
+.pytest_cache/

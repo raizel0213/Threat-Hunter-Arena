@@ -1,0 +1,4 @@
+# Project-level ignores
+.DS_Store
+*.swp
+*.swo
